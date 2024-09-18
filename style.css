@@ -1,0 +1,112 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+  }
+  
+  #container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  #stampInfoDiv {
+    width: 300px;
+    background-color: rgba(249, 249, 249, 0.8);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #333;
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  
+  .nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+  
+  #leftArrow {
+    left: 20px;
+  }
+  
+  #rightArrow {
+    right: 20px;
+  }
+  
+  h2 {
+    font-size: 22px;
+    color: #2c5f2d;
+    margin-bottom: 10px;
+  }
+  
+  .offer {
+    font-size: 14px;
+    color: #e74c3c;
+    margin-bottom: 20px;
+  }
+  
+  .stamp-details {
+    margin-bottom: 15px;
+  }
+  
+  h3 {
+    font-size: 20px;
+    color: #2c5f2d;
+    margin-bottom: 10px;
+  }
+  
+  .special-offer {
+    font-size: 16px;
+    color: #e74c3c;
+    margin-bottom: 10px;
+  }
+  
+  .shipping {
+    color: #27ae60;
+    margin-bottom: 20px;
+  }
+  
+  input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+  }
+  
+  button {
+    background-color: #4caf50;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
+  }
+  
+  #wishlist {
+    background-color: #f39c12;
+  }
+  
+  button:hover {
+    opacity: 0.9;
+  }

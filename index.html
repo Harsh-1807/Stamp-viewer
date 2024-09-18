@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Stamp Viewer</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+  <style>
+    /* Global Styles */
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Roboto', sans-serif;
+  background-color: #e9ecef; /* Light gray-blue background for a modern look */
+  color: #212529; /* Dark text color for readability */
+}
+
+/* Container */
+#container {
+  position: relative;
+  width: 100vw;
+  height: calc(100vh - 100px); /* Adjusted height for footer */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Navigation Bar */
+#nav {
+  background-color: #343a40; /* Dark gray for a sleek look */
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#nav a {
+  color: #f8f9fa; /* Light gray for contrast */
+  text-decoration: none;
+  margin: 0 20px;
+  font-weight: 600;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+#nav a:hover {
+  color: #17a2b8; /* Teal for hover effect */
+  transform: scale(1.1); /* Slight scale effect on hover */
+}
+
+/* Footer */
+#footer {
+  background-color: #343a40; /* Dark gray for consistency */
+  color: #f8f9fa; /* Light gray text */
+  text-align: center;
+  padding: 15px 0;
+  position: relative;
+  width: 100%;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Stamp Info */
+#stampInfoDiv {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  max-width: 500px; /* Increased width for better visibility */
+  width: calc(100% - 40px);
+  background-color: #ffffff; /* Clean white background */
+  border: 1px solid #ced4da; /* Light gray border */
+  border-radius: 12px;
+  padding: 25px; /* Increased padding */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow for prominence */
+  font-family: 'Roboto', sans-serif;
+  color: #212529; /* Dark text color */
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* Navigation Arrows */
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #17a2b8; /* Teal for arrows */
+  color: white;
+  border: none;
+  padding: 14px;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#leftArrow {
+  left: 20px;
+}
+
+#rightArrow {
+  right: 20px;
+}
+
+#leftArrow:hover,
+#rightArrow:hover {
+  background-color: #138496; /* Darker teal on hover */
+  transform: scale(1.1); /* Slightly larger on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  #stampInfoDiv {
+    left: 10px;
+    top: 10px;
+    width: calc(100% - 20px); /* Adjusted width */
+    padding: 20px;
+    position: fixed;
+    z-index: 10;
+  }
+
+  #nav {
+    padding: 10px;
+  }
+
+  #nav a {
+    margin: 0 10px;
+  }
+
+  #leftArrow {
+    left: 10px;
+  }
+
+  #rightArrow {
+    right: 10px;
+  }
+}
+
+/* General Styles */
+.offer {
+  background-color: #28a745; /* Green for offers */
+  color: #ffffff; /* White text for contrast */
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.price {
+  font-size: 24px; /* Slightly larger font size */
+  color: #dc3545; /* Red for price */
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.quantity-input {
+  padding: 10px;
+  font-size: 18px;
+  border: 2px solid #17a2b8; /* Teal border for input */
+  border-radius: 5px;
+  width: 70px; /* Slightly wider */
+  text-align: center;
+}
+
+button {
+  background-color: #17a2b8; /* Teal background for buttons */
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+  background-color: #138496; /* Darker teal on hover */
+  transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+#wishlist {
+  background-color: #dc3545; /* Red for wishlist */
+}
+
+#wishlist:hover {
+  background-color: #c82333; /* Darker red on hover */
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  background-color: #ffc107; /* Yellow for list items */
+  padding: 12px;
+  margin-bottom: 8px;
+  border-radius: 5px;
+  color: #212529; /* Dark text for list items */
+  font-weight: bold;
+}
+
+p {
+  line-height: 1.6;
+}
+
+div {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+  </style>
+</head>
+<body>
+  
+    <div id="nav">
+        <a href="#home">
+            <img src="logo.jpg" alt="Logo" style="height: 40px; vertical-align: middle;"/>
+        </a>
+        <a href="#product-search">Home</a>
+        <a href="#product-search">Product Search</a>
+        <a href="#eipo">EIPO</a>
+        <a href="#complaint">Complaint</a>
+        <a href="#contact">Contact</a>
+        <!-- Select Language -->
+        <a href="#Lang">Select Language: English</a>
+        <!-- Emoji for Screen Reader -->
+        <a href="#wishlist" aria-label="Screen Reader">
+            🔊
+        </a>
+        
+        
+        
+        <!-- Emoji for Font Selection -->
+        <a href="#Font" aria-label="Select Font">
+            🅰️
+        </a>
+    
+        <a href="#about">About</a>
+        <img src="azadi.jpeg" alt="Azadi" style="height: 40px; vertical-align: middle;"/>
+
+        <img src="g20.jpeg" alt="g20" style="height: 40px; vertical-align: middle;"/>
+        
+        <img src="emblem.jpg" alt="Emblem" style="height: 40px; vertical-align: middle;"/>
+        <a href="#login">Login</a>
+        <a href="#p">Profile</a>
+    </div>
+    
+
+
+<div id="container">
+    <div id="stampInfoDiv">
+        <h2>🌱 Eco-Post Stamp</h2>
+        <p class="offer">🔖 Limited Time Offer! Get it at a discount!</p>
+
+        <div style="margin-bottom: 20px;">
+            <p><strong>Year:</strong> 1947</p>
+            <p><strong>Country:</strong> India</p>
+            <p><strong>Value:</strong> ₹3½ Annas</p>
+            <p><strong>Rating:</strong> ⭐⭐⭐⭐☆ (4.2/5)</p>
+        </div>
+
+        <p class="price"><strong>Price:</strong> ₹443.99</p>
+        <p class="offer"><strong>Special Offer:</strong> Get it for ₹355.19!</p>
+
+        <label for="quantity" style="display:block; margin-bottom:10px;"><strong>Quantity:</strong></label>
+        <input type="number" id="quantity" name="quantity" min="1" value="1" class="quantity-input">
+
+        <button id="addToCart">🛒 Add to Cart</button>
+        <button id="wishlist">⭐ Add to Wishlist</button>
+
+        <!-- Additional Product Information -->
+        <h3>Description:</h3>
+        <p>This vintage stamp commemorates India's independence and is a must-have for collectors.</p>
+
+        <h3>Features:</h3>
+        <ul>
+            <li>High-quality print.</li>
+            <li>Limited edition.</li>
+            <li>Perfect for framing.</li>
+        </ul>
+
+        <!-- Customer Reviews -->
+        <h3>Customer Reviews:</h3>
+        <p>"A beautiful piece of history!" - Ravi K.</p>
+        <p>"Perfect addition to my collection!" - Priya S.</p>
+
+    </div>
+
+    <!-- Navigation arrows -->
+    <button id="leftArrow" class="nav-arrow">&#9664;</button>
+    <button id="rightArrow" class="nav-arrow">&#9654;</button>
+
+</div>
+
+<!-- Footer -->
+<div id="footer">
+   This Website Belongs To Department Of Posts, Ministry Of Communications, Govt. of India
+</div>
+
+<script src="main.js" type="module"></script>
+  
+</body>
+</html>
